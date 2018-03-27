@@ -1,5 +1,59 @@
-<textarea rows="4" cols="50" id='txt' >
-    please input
-</textarea> 
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<style>
+    .col {
+        height: 100px
+    }
+</style>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Input</span>
+                </div>
+                <textarea class="col" id="inputTxt" aria-label="Input"></textarea>
+            </div>
+        </div>
+        <button type="button" class="btn btn-light col-1" id="clean">Clean</button>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Clean</span>
+                </div>
+                <textarea class="col" id="cleanedTxt" aria-label="Cleaned Text"></textarea>
+            </div>
+        </div>
+        <button type="button" class="btn btn-light col-1" id="csvToJson">toJSON</button>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">JSON</span>
+                </div>
+                <textarea class="col" id="jsonTxt" aria-label="JSON"></textarea>
+            </div>
+        </div>
+        <button type="button" class="btn btn-light col-1" id="convert">Convert</button>
+        
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Output</span>
+                </div>
+                <textarea class="col" id="outputTxt" aria-label="Output" style="height:300px"></textarea>
+            </div>
+        </div>
+        <button type="button" class="btn btn-dark col-1" id="copy">Copy</button>
+    </div>
+</div>
 
 <script src='convert.js'> </script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
