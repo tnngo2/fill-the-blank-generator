@@ -27,7 +27,7 @@ function doConvert(json) {
                             hintIdx++;
                         }
                     }
-                    var pattern = new RegExp('(\\A|\\W)' + word + '(\\W|$)');
+                    var pattern = new RegExp('(^|\\W)' + word + '(\\W|$)');
 
                     question = question.replace(pattern, ' ___ ');
                 }
