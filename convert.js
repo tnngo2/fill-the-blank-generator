@@ -35,8 +35,8 @@ function doConvert(json) {
                     question = question.replace(pattern, ' ___ ');
                 }
             });
-            console.log(question + ':' + answer);
-            output = output + question + ':' + answer + '\n';
+            console.log(question + '\t' + answer);
+            output = output + question + '\t' + answer + '\n';
         }
     });
     return output;
