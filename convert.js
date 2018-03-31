@@ -1,10 +1,17 @@
+function rmBreakLineCollocation(str){
+    return str.replace(/\n\(#/g, '(#');
+}
+
 function doConvert(json) {
     var output = '';
     json.forEach(function (item) {
         var question = item.question;
         var answer = item.answer;
         if (answer && question) {
-            var hints = answer.match(/(\(=.*\))/g);
+            var explaination = answer.match(/(\(=(\w|\s)*\))/g);
+            var collocations = answer.match(/\(#(\w|\s|~|\/)*\)/g);
+            var hints = explaination.concat(collocations);
+
             var answerHintReplaced = answer.replace(/(\(=.*?\))/g, function () {
                 return '@';
             });
@@ -13,18 +20,14 @@ function doConvert(json) {
                 return '';
             });
 
-            var answerColonRemoved = answerNotedRemoved.replace(',', '');
-
-            var wordList = answerColonRemoved.split(' ');
-            var hintIdx = 0;
+            var wordList = answerNotedRemoved.split(' ');
             var foundIdx;
             wordList.forEach(function (word, idx, list) {
                 if (word) {
                     if (list[idx + 1] === '@' && hints) {
                         foundIdx = question.search(word);
                         if (foundIdx !== -1) {
-                            question = question.splice(foundIdx + word.length, 0, ' ' + hints[hintIdx]);
-                            hintIdx++;
+                            question = question.splice(foundIdx + word.length, 0, ' ' + hints.join(''));
                         }
                     }
                     var pattern = new RegExp('(^|\\W)' + word + '(\\W|$)');
@@ -40,10 +43,12 @@ function doConvert(json) {
 }
 
 function cleanInput(input) {
-    var res = input.replace(/(.*)\n(.*)\n/g, '$1\t$2\n');
-    console.log(res);
-    res = 'question\tanswer\n' + res;
-    return res;
+    var inputWithCollocation = rmBreakLineCollocation(input);
+
+    var pairs = inputWithCollocation.replace(/(.*)\n(.*)\n/g, '$1\t$2\n');
+    console.log(pairs);
+    pairs = 'question\tanswer\n' + pairs;
+    return pairs;
 }
 
 //var csv is the CSV file with headers
